@@ -3,6 +3,10 @@ class GamesController < ApplicationController
     before_action :get_game, only: [:show, :delete, :edit, :update, :destroy]
     http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
 
+    def all
+        @games = Game.all 
+    end
+    
     def index
         @developer = Developer.find(params[:developer_id])
         @games = @developer.games

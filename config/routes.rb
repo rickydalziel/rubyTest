@@ -3,6 +3,8 @@ Games::Application.routes.draw do
     resources :developers do
         resources :games, shallow: true
         end
+    
+    get '/games', to: 'games#all'
 
     root 'welcome#index'
     
