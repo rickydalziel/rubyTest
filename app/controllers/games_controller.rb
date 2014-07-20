@@ -9,7 +9,8 @@ class GamesController < ApplicationController
     end
 
     def new
-        @game = Game.new
+        @developer = Developer.find(params[:developer_id])
+        @game = @developer.games.new
     end
 
     def create
@@ -17,7 +18,7 @@ class GamesController < ApplicationController
         @game = @developer.games.create(game_params)
         @game.released = Time.new
         if(@game.save)
-            redirect_to @game
+           redirect_to @game.developer
         else
             render 'new'
         end
@@ -25,15 +26,16 @@ class GamesController < ApplicationController
 
     def update
         if(@game.update(game_params))
-            redirect_to @game
+            redirect_to @game.developer
         else
             render 'edit'
         end
     end
     
     def destroy 
+        developer = @game.developer
         @game.destroy
-        redirect_to games_path
+        redirect_to @game.developer
     end
 
 
@@ -44,8 +46,7 @@ class GamesController < ApplicationController
 
     private 
     def get_game
-        @developer = Developer.find(params[:developer_id])
-        @game = @developer.games.find(params[:id])
+        @game = Game.find(params[:id])
     end
 
 end

@@ -1,7 +1,7 @@
 Games::Application.routes.draw do
  
     resources :developers do
-        resources :games
+        resources :games, shallow: true
         end
 
     root 'welcome#index'

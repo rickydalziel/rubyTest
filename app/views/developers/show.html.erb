@@ -15,6 +15,9 @@
             <td><%= game.name %></td>
             <td><%= game.description %></td>  
             <td><%= game.released %></td>
+            <td> <%= link_to 'Edit', edit_game_path( game) %>
+                    <%= link_to 'Delete', [game], method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
 
     
         </tr>
@@ -25,3 +28,5 @@
   <% if @developer.games.count == 0 %>
         <p>No games</p>
     <% end %>
+
+<%= link_to 'Add game', new_developer_game_path(@developer) %>

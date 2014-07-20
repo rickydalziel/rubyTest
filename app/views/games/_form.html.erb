@@ -8,8 +8,8 @@
 
 <% end %>
 
-<%= form_for([@game]) do |f| %>
-<p>
+<%= form_for([@developer, @developer.games.build]) do |f| %>
+   <p>
     <%= f.label :name %> <br>
     <%= f.text_field :name %>
 </p>
@@ -23,5 +23,4 @@
 <p>
     <%= f.submit %>
 </p>
-
 <% end %>
