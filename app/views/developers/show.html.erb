@@ -1,0 +1,27 @@
+<h2><%= @developer.name %></h2>
+
+<b>Formed: </b> <%= @developer.formed %>
+
+<h3>Games:</h3>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Released</th>
+    
+    </tr>
+    <% @developer.games.each do |game| %>
+        <tr>
+            <td><%= game.name %></td>
+            <td><%= game.description %></td>  
+            <td><%= game.released %></td>
+
+    
+        </tr>
+    <% end %>
+
+</table>
+
+  <% if @developer.games.count == 0 %>
+        <p>No games</p>
+    <% end %>

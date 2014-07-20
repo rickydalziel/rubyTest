@@ -1,0 +1,27 @@
+<h2>Developer Index</h2>
+
+<%= link_to 'Create Developer', new_developer_path %>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Formed</th>
+
+    
+    </tr>
+    <% @developers.each do |dev| %>
+        <tr>
+            <td><%= link_to  dev.name, dev %></td>
+            <td><%= dev.formed %></td>  
+            <td> <%= link_to 'Edit', edit_developer_path(dev) %>
+                    <%= link_to 'Delete', dev, method: :delete, data: { confirm: 'Are you sure?' } %> 
+            </td>
+    
+        </tr>
+    <% end %>
+    
+   
+</table>
+ <% if @developers.count == 0%>
+        <p>No Developers found</p>
+<% end %>

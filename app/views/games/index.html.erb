@@ -1,0 +1,28 @@
+<h2>Games Index</h2>
+
+
+<%= link_to 'Create new game', new_game_path %> <br>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Released</th>
+    
+    </tr>
+    <% @games.each do |game| %>
+        <tr>
+            <td><%= link_to  game.name, game %></td>
+            <td><%= game.description %></td>  
+            <td><%= game.released %></td>
+            <td> <%= link_to 'Edit', edit_game_path(game) %>
+                    <%= link_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure?' } %> 
+            </td>
+    
+        </tr>
+    <% end %>
+</table>
+
+<% if @games.count == 0 %>
+    <p>No games found</p>
+<% end %>
