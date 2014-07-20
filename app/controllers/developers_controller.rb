@@ -1,6 +1,7 @@
 class DevelopersController < ApplicationController
     
     before_action :get_developer, only: [:show, :delete, :edit, :update, :destroy]
+    http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
     
     def index
         @developers = Developer.all
@@ -26,7 +27,12 @@ class DevelopersController < ApplicationController
         else
             render 'edit'
         end
-    end    
+    end   
+    
+    def destroy
+        @developer.destroy
+        redirect_to games_path
+    end
     
     private
     def developer_params
